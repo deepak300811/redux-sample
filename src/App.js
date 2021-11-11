@@ -1,20 +1,28 @@
-import React from "react";
+import React from "react"
 // components
-import Navbar from "./components/Navbar";
-import CartContainer from "./components/CartContainer";
-// items
-import cartItems from "./cart-items";
+import Navbar from "./components/Navbar"
+import CartContainer from "./components/CartContainer"
+import reducer from "./reducer"
+
 // redux stuff
+import { createStore } from "redux"
+import { Provider } from "react-redux"
+//initial store
+
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 function App() {
   // cart setup
 
   return (
-    <main>
+    <Provider store={store}>
       <Navbar />
-      <CartContainer cart={cartItems} />
-    </main>
-  );
+      <CartContainer />
+    </Provider>
+  )
 }
 
-export default App;
+export default App
